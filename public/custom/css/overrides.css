@@ -1,0 +1,64 @@
+/* ==========================================================
+   Custom Overrides – loaded LAST to override all plugin CSS
+   Add your extra CSS rules here as needed.
+   ========================================================== */
+
+/* --- DataTables Sorting Icons (single icon, no duplicate) --- */
+table.dataTable thead .sorting {
+    background-image: none !important;
+}
+
+table.dataTable thead .sorting_desc {
+    background-image: none !important;
+}
+
+table.dataTable thead .sorting_asc {
+    background-image: none !important;
+}
+
+/* Make sorting glyphicon icons smaller */
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+    font-size: 10px !important;
+}
+
+/* --- DataTables Pagination --- */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    display: inline-block;
+    min-width: 1.5em;
+    padding: 0em !important;
+    margin-left: 0px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    color: #333 !important;
+    border: 0px solid transparent !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+    border: 0px solid transparent !important;
+}
+
+/* --- Action buttons on single line (all pages) --- */
+#na_datatable td:last-child,
+#dashboard_orders_tb td:last-child {
+    white-space: nowrap;
+}
+
+#na_datatable td:last-child .btn,
+#dashboard_orders_tb td:last-child .btn {
+    margin: 1px;
+    padding: 2px 5px;
+}
+table.dataTable thead th, table.dataTable thead td
+{
+    padding: 5px 10px !important;
+}
+table.dataTable thead th, table.dataTable thead td{
+    border: none;
+}
+
+.main-header .logo .logo-lg{
+background-color:#fff;
+}

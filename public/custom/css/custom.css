@@ -1,0 +1,55 @@
+.form-label{
+    display: block;
+    margin-bottom: 5px;
+}
+.ui-widget.ui-widget-content{
+    z-index: 2000 !important;
+}
+#toast-container > div{
+    opacity: 0.95;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=95);
+    filter: alpha(opacity=95);
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane{
+    font-size: 13px;
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane .btn{
+    font-size: 13px;
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane table{
+    text-align: left;
+}
+.td-note{
+    width: 240px;
+    word-break: break-all;
+}
+td .icon-btn{
+    margin-right: 3px;
+}
+.jconfirm.jconfirm-white .jconfirm-box .jconfirm-buttons button, .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button{
+    font-size: 13px !important;
+}
+.label-desc{
+    margin-top: 3px;
+    color: #555;
+}
+.inline-block{
+    display: inline-block !important;
+}
+.orderCheckbox-wrapper{
+    padding-right: 15px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: 0px !important;
+    margin-left: 0px !important;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    color: #333 !important;
+    border: none !important;
+}.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    border: none !important;
+}
