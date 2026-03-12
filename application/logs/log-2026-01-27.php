@@ -1,0 +1,48 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Undefined array key 0 C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 47
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Trying to access array offset on null C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 47
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Undefined array key 0 C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Trying to access array offset on null C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Undefined array key 0 C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Trying to access array offset on null C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Undefined array key 0 C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Trying to access array offset on null C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Undefined array key 0 C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Trying to access array offset on null C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Undefined array key 0 C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:24:15 --> Severity: Warning --> Trying to access array offset on null C:\wamp64\www\bigskyooe\application\views\admin\patients\patient_list.php 52
+ERROR - 2026-01-27 15:39:24 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '33 = ''
+WHERE `dispatch_datetime` = 1769472000
+AND `dispatch_technologist_id` = ' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 15:40:00 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 15:40:07 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 15:40:17 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 15:43:33 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 15:58:43 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 15:59:37 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 16:00:49 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 16:04:51 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 16:20:51 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 16:22:27 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 17:12:36 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '35 = ''
+WHERE `dispatch_datetime` = 1769508720
+AND `dispatch_technologist_id` = ' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 17:12:54 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 17:14:59 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '36 = ''
+WHERE `dispatch_datetime` = 1769508840
+AND `dispatch_technologist_id` = ' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 17:15:08 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 18:43:10 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 19:11:04 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 19:18:56 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 19:48:35 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 19:49:17 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 19:49:34 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 20:28:03 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 20:35:43 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 22:21:33 --> Severity: error --> Exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 C:\wamp64\www\bigskyooe\system\database\drivers\mysqli\mysqli_driver.php 305
+ERROR - 2026-01-27 22:22:06 --> 404 Page Not Found: admin/Order/report
+ERROR - 2026-01-27 22:22:06 --> Severity: error --> Exception: Call to undefined function base_url() C:\wamp64\www\bigskyooe\application\views\errors\html\error_404.php 8
+ERROR - 2026-01-27 22:22:15 --> 404 Page Not Found: admin/Order/report
+ERROR - 2026-01-27 22:22:15 --> Severity: error --> Exception: Call to undefined function base_url() C:\wamp64\www\bigskyooe\application\views\errors\html\error_404.php 8
