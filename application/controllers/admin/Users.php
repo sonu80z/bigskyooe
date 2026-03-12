@@ -256,8 +256,15 @@ class Users extends MU_Controller
         $mainphone = $this->input->post('a_u_a_main_mobile_no');
         $phone = $this->input->post('a_u_a_mobile_no');
         $fax = $this->input->post('a_u_a_fax');
+        // Support both field names (add-user page uses _physician suffix, inline dialog uses plain)
         $email = $this->input->post('a_u_a_email_physician');
+        if (empty($email)) {
+            $email = $this->input->post('a_u_a_email');
+        }
         $mainstate = $this->input->post('a_u_a_state_physician');
+        if (empty($mainstate)) {
+            $mainstate = $this->input->post('a_u_a_state');
+        }
         $prefix = $this->input->post('a_u_a_prefix');
         $suffix = $this->input->post('a_u_a_suffix');
         
@@ -319,9 +326,27 @@ class Users extends MU_Controller
         
         if ($result) {
             $this->data_cache->invalidate_users();
+            if (isset($_POST['is_ajax'])) {
+                $data['id'] = $result;
+                $output_data = array(
+                    'status' => 1,
+                    'msg' => 'Ordering Physician has been added successfully!',
+                    'data' => $data
+                );
+                echo json_encode($output_data);
+                die;
+            }
             $this->session->set_flashdata('msg', 'Ordering Physician has been added successfully!');
             redirect(base_url('admin/users'));
         } else {
+            if (isset($_POST['is_ajax'])) {
+                $output_data = array(
+                    'status' => 0,
+                    'msg' => 'Unable to add physician.'
+                );
+                echo json_encode($output_data);
+                die;
+            }
             $this->session->set_flashdata('error', 'Unable to add physician.');
             redirect(base_url('admin/users/add'));
         }
@@ -665,6 +690,9 @@ class Users extends MU_Controller
     }
 
     fclose($file);
+    
+    // Invalidate user caches after bulk import
+    $this->data_cache->invalidate_users();
     
     // Store results in session and redirect to results page
     $this->session->set_userdata('import_results', $import_results);

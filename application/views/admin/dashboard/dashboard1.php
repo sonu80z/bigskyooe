@@ -492,7 +492,6 @@
                 d.adv_order_types = types.join(',');
             }
         },
-        lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
         responsive: true,
         deferRender: true,
         orderCellsTop: true,
@@ -505,8 +504,7 @@
             smart: true,
             regex: false,
             caseInsensitive: true
-        },
-        pageLength: 10
+        }
     });
 
     $(document).ready(function(){
@@ -687,9 +685,10 @@
 
         // Mark completed dialog
         $(document).on("click", ".mark-btn", function() {
-            $(".btn-mark-submit").data('id', $(this).data('id'));
+            var order_id = $(this).data('id');
             mark_dlg = show_dialog('Mark Completed', $(".mark-dlg-container").html(), 'small', true);
             setTimeout(function(){
+                $(".jconfirm .btn-mark-submit").data('id', order_id);
                 $(".jconfirm .date_time").datetimepicker({
                     changeMonth: true,
                     changeYear: true
@@ -849,8 +848,12 @@
 
         // Cancel order dialog
         $(document).on("click", ".cancel-btn", function() {
-            $(".btn-cancel-submit").data('id', $(this).data('id'));
+            var order_id = $(this).data('id');
             delete_order_dlg = show_dialog('Cancel Order', $(".delete-order-dlg-container").html(), 'small', true);
+            setTimeout(function(){
+                $(".jconfirm .btn-cancel-submit").data('id', order_id);
+                $(".jconfirm .order_cancel_datetime").val(getFormattedDate('m/d/Y H:i'));
+            }, 100);
         });
 
         // Cancel order submit

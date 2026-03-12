@@ -20,11 +20,19 @@ function admin_user_add_proc_func()
 {
 
     // multi select
-    jQuery("select[id='a_u_a_facility']").selectpicker();
+    if(jQuery("select[id='a_u_a_facility']").length) {
+        jQuery("select[id='a_u_a_facility']").selectpicker();
+    }
     // add user
     jQuery(".a_add_user_btn").click(function(){
         // firstly confirm whether username is duplicate or not
         var username = jQuery("#a_u_a_username").val();
+        if (!username || !username.trim()) {
+            jQuery("#a_admin_add_alert").removeClass("g_none_dis");
+            jQuery("#a_admin_add_alert").children("div").html("Username is required");
+            jQuery("#a_u_a_username").focus();
+            return;
+        }
         //console.log(username);
         var params = {
             "username" : username

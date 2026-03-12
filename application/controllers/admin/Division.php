@@ -11,6 +11,7 @@ class Division extends MY_Controller
     public function __construct(){
         parent::__construct();
         $this->load->model('admin/division_model', 'division_model');
+        $this->load->library('data_cache');
     }
 
     // go to facility add page
@@ -48,6 +49,7 @@ class Division extends MY_Controller
                 'fax' => $this->input->post('fax')
             );
             $this->division_model->edit_division($data, $id);
+            $this->data_cache->invalidate_divisions();
             $this->session->set_flashdata('msg', 'New division has been updated successfully!');
         }
         $data['title'] = 'Divisions Edit';
@@ -79,6 +81,7 @@ class Division extends MY_Controller
             );
             $result = $this->division_model->add_division($data);
             if($result){
+                $this->data_cache->invalidate_divisions();
                 $this->session->set_flashdata('msg', 'New division has been added successfully!');
                 redirect(base_url('admin/division/lists'));
             }
@@ -95,6 +98,7 @@ class Division extends MY_Controller
             );
             $result = $this->division_model->add_division($data);
             if($result){
+                $this->data_cache->invalidate_divisions();
                 $this->session->set_flashdata('msg', 'New subdivision has been added successfully!');
                 redirect(base_url('admin/division/edit/'.$this->input->post('parent')));
             }
@@ -111,6 +115,7 @@ class Division extends MY_Controller
             );
             $result = $this->division_model->add_division($data);
             if($result){
+                $this->data_cache->invalidate_divisions();
                 $this->session->set_flashdata('msg', 'New region has been added successfully!');
                 redirect(base_url('admin/division/edit/'.$this->input->post('parent')));
             }
@@ -132,6 +137,7 @@ class Division extends MY_Controller
             );
             $result = $this->division_model->edit_division($data, $id);
             if($result){
+                $this->data_cache->invalidate_divisions();
                 $this->session->set_flashdata('msg', 'A subdivision has been updated successfully!');
                 redirect(base_url('admin/division/edit/'.$this->input->post('parent')));
             }
@@ -149,6 +155,7 @@ class Division extends MY_Controller
             );
             $result = $this->division_model->edit_division($data, $id);
             if($result){
+                $this->data_cache->invalidate_divisions();
                 $this->session->set_flashdata('msg', 'A region has been updated successfully!');
                 redirect(base_url('admin/division/edit/'.$this->input->post('parent')));
             }
@@ -162,6 +169,7 @@ class Division extends MY_Controller
     */
     public function del_division( $did, $parent=null ){
         $result = $this->division_model->del_division($did);
+        $this->data_cache->invalidate_divisions();
         $this->session->set_flashdata('msg', 'The division has been deleted successfully!');
         if ( $parent == null ) {
             redirect(base_url('admin/division/lists'));

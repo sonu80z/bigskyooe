@@ -168,9 +168,7 @@ $(function () {
                         $kind_label = isset($kind_list[$kind_value]) ? $kind_list[$kind_value] : $kind_list['1'];
                         ?>
                         <input type="hidden" name="ao_kind" value="<?php echo htmlspecialchars($kind_value, ENT_QUOTES, 'UTF-8'); ?>" />
-                        <p class="form-control-static" style="margin-top: 7px;">
-                            <?php echo htmlspecialchars($kind_label, ENT_QUOTES, 'UTF-8'); ?>
-                        </p>
+                        
                     </div>
                 </div>
                 <div class="ao_section">
@@ -968,7 +966,7 @@ $(function () {
                         <div class="form-group">
                             <div class="col-sm-6">
                                 <label class="control-label">Dispatch Date/Time</label>
-                                <input type="text" class="form-control dispatch_datetime_inline" name="dispatch_datetime_inline" 
+                                <input type="text" class="form-control dispatch_datetime_inline" name="dispatch_datetime_inline" readonly
                                        value="<?php 
                                        if(!empty($order_detail['dispatch_datetime'])) {
                                            echo date('m/d/Y H:i', $order_detail['dispatch_datetime']);
@@ -1510,6 +1508,24 @@ $(function () {
             timeFormat: 'HH:mm',
             changeMonth: true,
             changeYear: true
+        });
+
+        // Dispatch validation: if one field is filled, require the other
+        $('form.form-horizontal').on('submit', function(e) {
+            var dt = $.trim($('.dispatch_datetime_inline').val());
+            var tech = $.trim($('select[name="dispatch_technologist_inline"]').val());
+            if(dt && !tech) {
+                alert('Please select a Technologist for dispatch.');
+                $('select[name="dispatch_technologist_inline"]').focus();
+                e.preventDefault();
+                return false;
+            }
+            if(!dt && tech) {
+                alert('Please select a Dispatch Date/Time.');
+                $('.dispatch_datetime_inline').focus();
+                e.preventDefault();
+                return false;
+            }
         });
         
         // Initialize hidden field based on checkbox state on page load

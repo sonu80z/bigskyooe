@@ -54,6 +54,7 @@
                             <option value="NURSING HOME" <?=(isset($id)?(($facility["facility_type"]=="NURSING HOME")?"selected":""):"")?>>NURSING HOME</option>
                             <option value="HOME BOUND" <?=(isset($id)?(($facility["facility_type"]=="HOME BOUND")?"selected":""):"")?>>HOME BOUND</option>
                             <option value="CORRECTIONAL FACILITY" <?=(isset($id)?(($facility["facility_type"]=="CORRECTIONAL FACILITY")?"selected":""):"")?>>CORRECTIONAL FACILITY</option>
+                            <option value="DETENTION CENTER" <?=(isset($id)?(($facility["facility_type"]=="DETENTION CENTER")?"selected":""):"")?>>DETENTION CENTER</option>
                             <option value="LAB" <?=(isset($id)?(($facility["facility_type"]=="LAB")?"selected":""):"")?>>LAB</option>
                         </select>
                     </div>

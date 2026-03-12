@@ -7,7 +7,9 @@ jQuery(function(){
 function procedure_add_page_events()
 {
     // multi select
-    jQuery("select[name='symptoms_slt']").selectpicker();
+    if(jQuery("select[name='symptoms_slt']").length) {
+        jQuery("select[name='symptoms_slt']").selectpicker();
+    }
 
     // set symptoms value to hidden field
     jQuery("select[name='symptoms_slt']").change(function(){

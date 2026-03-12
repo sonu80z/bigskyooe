@@ -921,7 +921,6 @@ if(!empty($order_detail)){
 <script>
     jQuery('#order-history-table').DataTable(
         {
-            "lengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]],
             'responsive': true
         }
     );

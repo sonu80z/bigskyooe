@@ -90,7 +90,7 @@
 <!-- DataTables init -->
 <script>
     //---------------------------------------------------
-    jQuery('#na_datatable').DataTable({"lengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]], responsive: true});
+    jQuery('#na_datatable').DataTable({responsive: true});
 </script>
 
 <script type="text/javascript">

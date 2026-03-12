@@ -1690,8 +1690,8 @@ class Order extends MU_Controller{
                 'Additional Patient History = '       . $patient_history,
                 'Institution Name = '                 . $facility,
                 'Accession Number = '                 . $accession_number,
-                "Referring Physician's Name = "       . $ordering_caret,
-                "Requesting Physician's Name = "      . $ordering_caret,
+                'Referring Physician = '              . $ordering_caret,
+                'Requesting Physician = '             . $ordering_caret,
                 'Admitting Diagnoses Description = '  . $patient_history,
                 'Requested Procedure ID = '           . $cpt,
                 'Requested Procedure Description = '  . $desc,
@@ -1986,7 +1986,15 @@ class Order extends MU_Controller{
         $reason_for_cancel = $this->input->post('reason_for_cancel');
         $reschedule = $this->input->post('reschedule');
         $datetime = $this->input->post('date_time');
+        if (empty($datetime)) {
+            output_error('Date/time is required');
+            return;
+        }
         $dtime = DateTime::createFromFormat("m/d/Y H:i:s", $datetime.":00");
+        if ($dtime === false) {
+            output_error('Invalid date/time format');
+            return;
+        }
         $datetimestamp = $dtime->getTimestamp();
         $update_data = array(
             'is_canceled'=>1,

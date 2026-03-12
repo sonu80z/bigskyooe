@@ -67,6 +67,16 @@
                                value="<?= $user["fax"]; ?>"/>
                     </div>
                 </div>
+
+                <?php if (!$is_physician): ?>
+                <div class="form-group" id="npi_field_row">
+                    <div class="col-sm-6">
+                        <label class="control-label">NPI</label>
+                        <input type="text" name="a_u_a_npi" class="form-control" id="a_u_a_npi_user"
+                               value="<?= $user["NPI"]; ?>"/>
+                    </div>
+                </div>
+                <?php endif; ?>
                 
                 <!-- User Account Fields -->
                 <div id="user_account_fields" <?php if ($is_physician) echo 'style="display: none;"'; ?>>

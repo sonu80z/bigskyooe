@@ -103,7 +103,7 @@
 <!-- DataTables init -->
 <script>
     //---------------------------------------------------
-    var facilityTable = jQuery('#na_datatable').DataTable({"lengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]], responsive: true});
+    var facilityTable = jQuery('#na_datatable').DataTable({responsive: true});
 
     $('#facility_export_btn').on('click', function(e) {
         e.preventDefault();

@@ -98,8 +98,6 @@
                        '<a title="Delete" class="btn btn-sm btn-danger" data-href="<?= base_url("admin/listitem/delete/"); ?>' + data + '" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-o"></i></a>';
             }}
         ],
-        "lengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]],
-        "pageLength": 20,
         "order": [[1, 'asc']],
         "responsive": true,
         "deferRender": true

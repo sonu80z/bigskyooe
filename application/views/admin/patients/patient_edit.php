@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <div class="col-sm-3">
                         <label class="control-label">Secondary ID </label>
-                        <input type="text" name="a_u_a_secondary_id" value="<?= $patient["SECONDARY_ID"]; ?>" class="form-control" id="a_u_a_secondary_id" required/>
+                        <input type="text" name="a_u_a_secondary_id" value="<?= $patient["SECONDARY_ID"]; ?>" class="form-control" id="a_u_a_secondary_id"/>
                     </div>
                     <div class="col-sm-3">
                         <label class="control-label">Suffix</label>
@@ -221,11 +221,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-12 g_txt_right" id="a_add_user" style="display:none;">
-                        <input type="submit" name="submit" value="Edit Patient" class="btn btn-info g_none_dis">
-                    </div>
                     <div class="col-md-12 g_txt_right">
-                        <button type="button" class="btn btn-info a_add_user_btn">Edit Patient</button>
+                        <button type="submit" class="btn btn-info">Edit Patient</button>
                     </div>
                 </div>
                 <!-- Modal -->
@@ -278,6 +275,25 @@
             mask: phones,
             greedy: false,
             definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
+
+        $('#a_u_a_dob').datepicker({
+            maxDate: 0,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '-120:+0'
+        });
+
+        $('#a_u_a_creation_date').datepicker({
+            maxDate: 0,
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $('#a_u_a_last_order_date').datepicker({
+            maxDate: 0,
+            changeMonth: true,
+            changeYear: true
+        });
     });
 
 </script>

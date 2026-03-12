@@ -5,11 +5,13 @@
 		function __construct()
 		{
 			parent::__construct();
-            date_default_timezone_set('UTC');
 			if(!$this->session->has_userdata('is_admin_login'))
 			{
 				redirect('admin/auth/login', 'refresh');
 			}
+			// Prevent browser from caching HTML pages
+			$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+			$this->output->set_header('Pragma: no-cache');
 		}
 	}
 
@@ -19,11 +21,13 @@
 		function __construct()
 		{
 			parent::__construct();
-            date_default_timezone_set('UTC');
 			if(!$this->session->has_userdata('is_user_login'))
 			{
 				redirect('admin/auth/login');
 			}
+			// Prevent browser from caching HTML pages
+			$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+			$this->output->set_header('Pragma: no-cache');
 		}
 	}
 
@@ -33,7 +37,6 @@
 		function __construct()
 		{
 			parent::__construct();
-            date_default_timezone_set('UTC');
 
             if ( date("Y-m-d") > "2019-06-30" ) {
                 // redirect('admin/auth/login', 'refresh');
@@ -43,6 +46,9 @@
 			{
 				redirect('admin/auth/login', 'refresh');
 			}
+			// Prevent browser from caching HTML pages
+			$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+			$this->output->set_header('Pragma: no-cache');
 		}
 	}
 
@@ -51,11 +57,13 @@
 		function __construct()
 		{
 			parent::__construct();
-            date_default_timezone_set('UTC');
 			if(!$this->session->has_userdata('is_customer_login'))
 			{
 				redirect('home/');
 			}
+			// Prevent browser from caching HTML pages
+			$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+			$this->output->set_header('Pragma: no-cache');
 		}
 	}
 

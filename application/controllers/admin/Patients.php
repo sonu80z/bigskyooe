@@ -30,6 +30,7 @@ class Patients extends MU_Controller
         $data['title'] = 'Add New Patient';
         $data['facilities'] = $this->data_cache->get_facilities();
         $data['divisions'] = $this->division_model->get_all_divisions_via_type(0);
+        $data['page_js'] = array();
         $data['view'] = 'admin/patients/patient_add';
         $this->load->view('layout', $data);
     }
@@ -103,6 +104,7 @@ class Patients extends MU_Controller
         $id = $this->security->xss_clean($id);
         $data['patient'] = $this->patient_model->get_patient_info($id);;
         $data['title'] = "Edit Patient";
+        $data['page_js'] = array();
         $data['view'] = 'admin/patients/patient_edit';
         $this->load->view('layout', $data);
     }

@@ -65,6 +65,13 @@
         <script src="<?= base_url() ?>public/plugins/datatables/dataTables.bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+        <script>
+            // Global DataTable defaults
+            $.extend(true, $.fn.dataTable.defaults, {
+                pageLength: 30,
+                lengthMenu: [[30, 50, 100], [30, 50, 100]]
+            });
+        </script>
 
         <!-- Core plugins (used on most pages) -->
         <script src="<?= base_url() ?>public/plugins/select2/select2.full.min.js"></script>

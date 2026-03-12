@@ -11,6 +11,7 @@ class ListItem extends MY_Controller
     public function __construct(){
         parent::__construct();
         $this->load->model('admin/lists_model', 'lists_model');
+        $this->load->library('data_cache');
     }
 
     // go to facility add page
@@ -40,6 +41,7 @@ class ListItem extends MY_Controller
         );
         $data = $this->security->xss_clean($data);
         $this->lists_model->create_list($data);
+        $this->data_cache->invalidate_lists();
         $this->session->set_flashdata('msg', 'List item has been added successfully!');
         redirect(base_url('admin/listitem/lists'));
     }
@@ -75,6 +77,7 @@ class ListItem extends MY_Controller
         );
         $update_data = $this->security->xss_clean($update_data);
         $this->lists_model->update_list($id, $update_data);
+        $this->data_cache->invalidate_lists();
         $this->session->set_flashdata('msg', 'List item has been updated successfully!');
         redirect(base_url('admin/listitem/lists'));
     }
@@ -83,6 +86,7 @@ class ListItem extends MY_Controller
     public function delete($id = 0){
         $id = intval($id);
         $this->lists_model->delete_list($id);
+        $this->data_cache->invalidate_lists();
         $this->session->set_flashdata('msg', 'List item has been deleted successfully!');
         redirect(base_url('admin/listitem/lists'));
     }

@@ -209,7 +209,6 @@
 <script>
     //---------------------------------------------------
     var usersTable = jQuery('#na_datatable').DataTable({
-        "lengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]], 
         responsive: true,
         orderCellsTop: true,
         fixedHeader: true,

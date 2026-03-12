@@ -493,7 +493,6 @@
                 d.adv_order_types = types.join(',');
             }
         },
-        lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
         responsive: true,
         deferRender: true,
         orderCellsTop: true,
@@ -502,8 +501,7 @@
         columnDefs: [
             { orderable: false, targets: [0, 10] }
         ],
-        search: { smart: true, regex: false, caseInsensitive: true },
-        pageLength: 30
+        search: { smart: true, regex: false, caseInsensitive: true }
     });
 
     $(document).ready(function(){

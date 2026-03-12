@@ -81,7 +81,7 @@
 <!-- DataTables init -->
 <script>
     //---------------------------------------------------
-    var procedureTable = jQuery('#na_datatable').DataTable({"lengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]], responsive: true});
+    var procedureTable = jQuery('#na_datatable').DataTable({responsive: true});
 
     $('#procedure_export_btn').on('click', function(e) {
         e.preventDefault();
