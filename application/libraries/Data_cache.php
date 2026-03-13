@@ -16,7 +16,7 @@
 class Data_cache {
     
     private $CI;
-    private $default_ttl = 3600; // 1 hour
+    private $default_ttl = 0; // 1 hour
     
     public function __construct()
     {
@@ -143,7 +143,7 @@ class Data_cache {
     
     /**
      * Get all payers (cached)
-     * Pulls from tbl_lists where name='insurance' (managed via List Management)
+     * Pulls from tbl_lists where name='insurance_company' (managed via List Management)
      */
     public function get_payers()
     {
@@ -151,7 +151,7 @@ class Data_cache {
         $data = $this->CI->cache->file->get($key);
         if($data === FALSE) {
             $this->CI->load->model('admin/lists_model', 'lists_model');
-            $data = $this->CI->lists_model->get_all_lists_by_name('insurance');
+            $data = $this->CI->lists_model->get_all_lists_by_name('insurance_company');
             foreach($data as &$row) {
                 $row['name'] = $row['value'];
             }
@@ -162,7 +162,7 @@ class Data_cache {
     
     /**
      * Get all insurance types (cached)
-     * Pulls from tbl_lists where name='insurance' (managed via List Management)
+     * Pulls from tbl_lists where name='insurance_type' (managed via List Management)
      */
     public function get_insurance_types()
     {
@@ -170,7 +170,7 @@ class Data_cache {
         $data = $this->CI->cache->file->get($key);
         if($data === FALSE) {
             $this->CI->load->model('admin/lists_model', 'lists_model');
-            $data = $this->CI->lists_model->get_all_lists_by_name('insurance');
+            $data = $this->CI->lists_model->get_all_lists_by_name('insurance_type');
             // Map 'value' to 'name' for backward compatibility with order views
             foreach($data as &$row) {
                 $row['name'] = $row['value'];
@@ -182,7 +182,7 @@ class Data_cache {
     
     /**
      * Get all insurance companies (cached)
-     * Pulls from tbl_lists where name='insurance' (managed via List Management)
+     * Pulls from tbl_lists where name='insurance_company' (managed via List Management)
      */
     public function get_insurance_companies()
     {
@@ -190,7 +190,7 @@ class Data_cache {
         $data = $this->CI->cache->file->get($key);
         if($data === FALSE) {
             $this->CI->load->model('admin/lists_model', 'lists_model');
-            $data = $this->CI->lists_model->get_all_lists_by_name('insurance');
+            $data = $this->CI->lists_model->get_all_lists_by_name('insurance_company');
             foreach($data as &$row) {
                 $row['name'] = $row['value'];
             }
@@ -332,11 +332,11 @@ class Data_cache {
     public function invalidate_lists()
     {
         // List cache keys use md5 of the name, so delete known ones
-        $list_names = array('relationship', 'R4P', 'insurance', 'division', 'exception', 'icd', 'modality', 'pcategory', 'radiologist', 'Lab');
+        $list_names = array('relationship', 'R4P', 'insurance_company', 'insurance_type', 'division', 'exception', 'icd', 'modality', 'pcategory', 'radiologist', 'Lab', 'facilitytype', 'hospice_locations');
         foreach($list_names as $name) {
             $this->CI->cache->file->delete('ref_lists_' . md5($name));
         }
-        // Also invalidate insurance types since they come from lists
-        $this->CI->cache->file->delete('ref_all_insurance_types');
+        // Also invalidate insurance-related caches
+        $this->invalidate_insurance();
     }
 }

@@ -26,10 +26,21 @@
                         <select name="name" class="form-control">
                             <option selected="selected" disabled>Select</option>
                             <?php
-                            $categories = array('division','exception','icd','insurance','modality','pcategory','radiologist','relationship','Lab');
-                            foreach($categories as $cat) {
+                            $categories = array(
+                                'division' => 'Division',
+                                'exception' => 'Exception',
+                                'icd' => 'ICD Code 10',
+                                'insurance_company' => 'Insurance Company',
+                                'insurance_type' => 'Insurance Type',
+                                'modality' => 'Modality',
+                                'pcategory' => 'Procedure Category',
+                                'radiologist' => 'Radiologist',
+                                'relationship' => 'Relationship',
+                                'Lab' => 'Lab'
+                            );
+                            foreach($categories as $cat => $label) {
                                 $selected = (isset($list['name']) && $list['name'] == $cat) ? 'selected' : '';
-                                echo '<option value="'.$cat.'" '.$selected.'>'.ucfirst($cat).'</option>';
+                                echo '<option value="'.htmlspecialchars($cat).'" '.$selected.'>'.htmlspecialchars($label).'</option>';
                             }
                             ?>
                         </select>

@@ -20,8 +20,8 @@
                     <div></div>
                 </div>
                 <?php 
-                    // Detect if this is a physician-only entry
-                    $is_physician = (strpos($user["username"], 'phys_') === 0);
+                    // Detect if this is an ordering physician
+                    $is_physician = ((int)$user['role'] === 7);
                 ?>
                 <?php echo form_open(base_url('admin/users/update/' . $user["id"]), 'class="form-horizontal"'); ?>
                 <div class="form-group">
@@ -73,7 +73,7 @@
                     <div class="col-sm-6">
                         <label class="control-label">NPI</label>
                         <input type="text" name="a_u_a_npi" class="form-control" id="a_u_a_npi_user"
-                               value="<?= $user["NPI"]; ?>"/>
+                               value="<?= !empty($user['NPI']) ? str_repeat('X', strlen($user['NPI'])) : ''; ?>"/>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -152,7 +152,7 @@
                     <div class="col-sm-6">
                         <label class="control-label">Physician's NPI Number * </label>
                         <input type="text" name="a_u_a_npi" class="form-control" id="a_u_a_npi"
-                               value="<?= $user["NPI"]; ?>" <?php if ($is_physician) echo 'required'; ?>/>
+                               value="<?= !empty($user['NPI']) ? str_repeat('X', strlen($user['NPI'])) : ''; ?>" <?php if ($is_physician) echo 'required'; ?>/>
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label">Facility *</label>
@@ -267,7 +267,6 @@
     </div>
 </section>
 
-<script type="text/javascript">
 <script type="text/javascript">
     $(document).ready(function () {
         // Initialize selectpicker for facility and permitted state

@@ -13,7 +13,8 @@
                         <option value="division">Division</option>
                         <option value="exception">Exception</option>
                         <option value="icd">ICD Code 10</option>
-                        <option value="insurance">Insurance</option>
+                        <option value="insurance_company">Insurance Company</option>
+                        <option value="insurance_type">Insurance Type</option>
                         <option value="modality">Modality</option>
                         <option value="pcategory">Procedure Category</option>
                         <option value="radiologist">Radiologist</option>

@@ -14,6 +14,23 @@ if(!empty($order_detail)){
 }
 ?>
 <!-- inputMask loaded in layout.php -->
+<style>
+.ao_box .bootstrap-select > .dropdown-toggle {
+    height: 34px;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+}
+.insurance-company-dv .form-control{
+    padding: 0px 0px !important;
+}
+.insurance-company-dv  .dropdown-toggle {
+    height: 26px !important;
+    padding: 0px 6px !important;
+}
+.insurance-company-dv  .dropdown-toggle:focus{
+    outline: none !important;
+}
+</style>
 <script>
 // Room field is not mandatory
 $(function () {
@@ -751,9 +768,9 @@ $(function () {
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 insurance-company-dv">
                                 <label class="control-label">Insurance Company (Payer)</label>
-                                <select name="ao_company" class="form-control">
+                                <select name="ao_company" class="form-control selectpicker" data-live-search="true" data-size="8">
                                     <option value="">Select</option>
                                     <?php
                                     $insurancecompany_value = htmlspecialchars_decode(trim(get_order_value($order_detail, $prefill, 'insurancecompany')));
@@ -789,9 +806,9 @@ $(function () {
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 insurance-company-dv">
                                 <label class="control-label">Insurance Company (Payer)</label>
-                                <select name="ao_company2" class="form-control">
+                                <select name="ao_company2" class="form-control selectpicker" data-live-search="true" data-size="8">
                                     <option value="">Select</option>
                                     <?php
                                     $ic2_value = htmlspecialchars_decode(trim(get_order_value($order_detail, $prefill, 'insurancecompany2')));
@@ -826,9 +843,9 @@ $(function () {
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 insurance-company-dv">
                                 <label class="control-label">Insurance Company (Payer)</label>
-                                <select name="ao_company3" class="form-control">
+                                <select name="ao_company3" class="form-control selectpicker" data-live-search="true" data-size="8">
                                     <option value="">Select</option>
                                     <?php
                                     $ic3_value = htmlspecialchars_decode(trim(get_order_value($order_detail, $prefill, 'insurancecompany3')));
@@ -1208,44 +1225,54 @@ $(function () {
                     <div></div>
                 </div>
                 <?php echo form_open(base_url('admin/users/create'), 'class="form-horizontal"'); ?>
+                <input type="hidden" name="add_type_value" value="physician" />
+
+                <!-- Add Type Selection -->
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <label class="control-label">Add as: *</label>
+                        <div style="margin-top: 10px;">
+                            <label style="margin-right: 30px;">
+                                <input type="radio" name="dlg_add_type" class="dlg_add_type" value="physician" checked />
+                                Ordering Physician Only
+                            </label>
+                            <label>
+                                <input type="radio" name="dlg_add_type" class="dlg_add_type" value="user" />
+                                User Account
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin: 10px 0 15px;">
+
+                <!-- Common Fields -->
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label class="control-label">First Name * </label>
-                        <input type="text" name="a_u_a_firstname" class="form-control" id="a_u_a_firstname" required/>
+                        <input type="text" name="a_u_a_firstname" class="form-control" required/>
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label">Last Name * </label>
-                        <input type="text" name="a_u_a_lastname" class="form-control" id="a_u_a_lastname" required/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-6">
-                        <label class="control-label">User Name * </label>
-                        <input type="text" name="a_u_a_username" class="form-control a_u_a_username" required/>
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="control-label">Email * </label>
-                        <input type="email" name="a_u_a_email" class="form-control" id="a_u_a_email" required/>
+                        <input type="text" name="a_u_a_lastname" class="form-control" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label class="control-label">Prefix </label>
-                        <input type="text" name="a_u_a_prefix" class="form-control" id="a_u_a_prefix"/>
+                        <input type="text" name="a_u_a_prefix" class="form-control"/>
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label">Suffix </label>
-                        <input type="text" name="a_u_a_suffix" class="form-control" id="a_u_a_suffix"/>
+                        <input type="text" name="a_u_a_suffix" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label class="control-label">Physician's NPI Number *</label>
-                        <input type="text" name="a_u_a_npi" class="form-control" id="a_u_a_npi" required/>
+                        <input type="text" name="a_u_a_npi" class="form-control" required/>
                     </div>
                     <div class="col-sm-6">
-                        <label class="control-label">
-                        </label>
+                        <label class="control-label">Facility</label>
                         <select name="a_u_a_facility[]" class="form-control a_u_a_facility" multiple data-live-search="true">
                             <?php
                             for ($i = 0; $i < count($facilities); $i++) {
@@ -1257,52 +1284,77 @@ $(function () {
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4">
-                        <label class="control-label">Main Mobile No *</label>
-                        <input type="text" name="a_u_a_main_mobile_no" class="form-control a_u_a_main_mobile_no"
-                               required/>
+                        <label class="control-label">Main Mobile No</label>
+                        <input type="text" name="a_u_a_main_mobile_no" class="form-control a_u_a_main_mobile_no"/>
                     </div>
                     <div class="col-sm-4">
-                        <label class="control-label">Mobile No *</label>
-                        <input type="text" name="a_u_a_mobile_no" class="form-control a_u_a_mobile_no" required/>
+                        <label class="control-label">Mobile No</label>
+                        <input type="text" name="a_u_a_mobile_no" class="form-control a_u_a_mobile_no"/>
                     </div>
                     <div class="col-sm-4">
-                        <label class="control-label">Fax *</label>
-                        <input type="text" name="a_u_a_fax" class="form-control" id="a_u_a_fax"/>
+                        <label class="control-label">Fax</label>
+                        <input type="text" name="a_u_a_fax" class="form-control"/>
+                    </div>
+                </div>
+
+                <!-- Physician Only Fields -->
+                <div class="dlg-physician-fields">
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <label class="control-label">Email</label>
+                        <input type="email" name="a_u_a_email" class="form-control"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label">Main State</label>
+                        <select name="a_u_a_state" class="form-control">
+                            <?php
+                            foreach($states as $key => $info){
+                                ?>
+                                <option value="<?php echo $info['fldSt']; ?>"><?php echo $info['fldState']; ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                </div>
+
+                <!-- User Account Fields -->
+                <div class="dlg-user-fields" style="display: none;">
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <label class="control-label">User Name * </label>
+                        <input type="text" name="a_u_a_username" class="form-control a_u_a_username"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label">Email * </label>
+                        <input type="email" name="a_u_a_email_user" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label class="control-label">Password * </label>
-                        <input type="password" name="a_u_a_password" class="form-control a_u_a_password" required/>
+                        <input type="password" name="a_u_a_password" class="form-control a_u_a_password"/>
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label">Retype Password *</label>
-                        <input type="password" name="a_u_a_rpassword" class="form-control a_u_a_rpassword"
-                               required/>
+                        <input type="password" name="a_u_a_rpassword" class="form-control a_u_a_rpassword"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-3">
                         <label class="control-label">Role</label>
                         <select name="a_u_a_role" class="form-control">
-                            <!--<option value="1">Super Admin</option>
-                            <option value="2">Admin</option>
-                            <option value="3">Coder</option>
-                            <option value="4">Dispatcher</option>
-                            <option value="5">Staff</option>
-                            <option value="6">Facility User</option>-->
                             <option value="7" selected>Ordering Physician</option>
-                            <!--<option value="8">Technologist</option>-->
                         </select>
                     </div>
                     <div class="col-sm-3">
                         <label class="control-label">Main State</label>
-                        <select name="a_u_a_state" class="form-control">
+                        <select name="a_u_a_state_user" class="form-control">
                             <?php
                             foreach($states as $key => $info){
-                                $selected = "";
                                 ?>
-                                <option value="<?php echo $info['fldSt']; ?>" <?php echo $selected;?>><?php echo $info['fldState']; ?></option>
+                                <option value="<?php echo $info['fldSt']; ?>"><?php echo $info['fldState']; ?></option>
                                 <?php
                             }
                             ?>
@@ -1313,9 +1365,8 @@ $(function () {
                         <select name="a_u_a_secondary_state" class="form-control">
                             <?php
                             foreach($states as $key => $info){
-                                $selected = "";
                                 ?>
-                                <option value="<?php echo $info['fldSt']; ?>" <?php echo $selected;?>><?php echo $info['fldState']; ?></option>
+                                <option value="<?php echo $info['fldSt']; ?>"><?php echo $info['fldState']; ?></option>
                                 <?php
                             }
                             ?>
@@ -1323,72 +1374,15 @@ $(function () {
                     </div>
                     <div class="col-sm-3">
                         <br>
-                        <label class="control-label"><input type="checkbox" name="a_u_a_trackgps" class="a_u_a_trackgps"/> &nbsp;Track GPS</label>
+                        <label class="control-label"><input type="checkbox" name="a_u_a_change_pwd"/> &nbsp;Force Password Change</label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-3">
-                        <label class="control-label">Divisiosn </label>
-                        <select name="af_divisions" class="form-control">
-                            <option value="0">Select Division</option>
-                            <?php
-                            foreach ($divisions as $row) {
-                                echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <label class="control-label">Subdivisions</label>
-                        <select name="af_subdivisions" class="form-control" disabled>
-                            <option value="0">Select Subdivision</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <label class="control-label">Regions</label>
-                        <select name="af_regions" class="form-control" disabled>
-                            <option value="0">Select Region</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <label class="control-label">Zone</label>
-                        <select name="af_zone" class="form-control" disabled>
-                            <option value="0">Select Zone</option>
-                        </select>
-                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-12 g_txt_right" id="approve" style="display:none;">
-                        <input type="submit" name="submit" value="Add User" class="btn btn-info">
-                        <a href="<?= base_url(); ?>admin/traders/add" class="btn btn-danger">Reset</a>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-6 row">
-                        <div class="col-md-6">
-                            <label class="control-label"><input type="checkbox" name="a_u_a_dispatch" class="a_u_a_dispatch"/> &nbsp;Permitted to dispatch?</label>
-                        </div>
-                        <div class="col-md-6 permitted_state" style="display: none">
-                            <label class="control-label">Permitted State</label>
-                            <select name="a_u_a_permitted_state[]" class="form-control a_u_a_permitted_state" multiple data-live-search="true">
-                                <option value="1">Pennsylvania</option>
-                                <!--<option value="1">Arizona</option>
-                                <option value="2">California</option>
-                                <option value="3">Colorado</option>
-                                <option value="4">Utah</option> -->
-                            </select>
-                        </div>
 
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="control-label"><input type="checkbox" name="a_u_a_change_pwd" id="a_u_a_change_pwd"/> &nbsp;Force Password Change at Next Login </label>
-                    </div>
-                </div>
                 <div class="form-group">
                     <div class="col-md-12 g_txt_right">
                         <input type="hidden" name="is_ajax" class="is_ajax" value="1"/>
-                        <input type="hidden" name="a_u_a_deviceid" class="a_u_a_deviceid"/>
-                        <button type="button" class="btn btn-info a_add_user_btn">Add User</button>
+                        <button type="button" class="btn btn-info a_add_user_btn">Add Physician</button>
                         <a href="javascript:void(0)" class="btn btn-danger btn-close-user-dlg">Cancel</a>
                     </div>
                 </div>
@@ -1493,6 +1487,9 @@ $(function () {
     /*for service dr part*/
     var user_dlg;
     $(document).ready(function(){
+        // Initialize selectpicker for insurance company dropdowns
+        $('select.selectpicker').selectpicker('render');
+
         // Initialize datepicker for Date of Service field with calendar popup
         $('.ao_date_of_service').datepicker({
             dateFormat: 'mm/dd/yy',
@@ -1551,13 +1548,19 @@ $(function () {
         $("select[name='ao_service_dr']").change(function () {
             var ordering_physician = jQuery(this).val();
             console.log("ordering_physician:", ordering_physician);
-            if (ordering_physician == 1111) {
+            if (ordering_physician && ordering_physician != 1111) {
+                var selected = $(this).find('option:selected');
+                var phone = selected.data('phone') || '';
+                var fax = selected.data('fax') || '';
+                var npi = selected.data('npi') || '';
+                $("input[name='ao_dr_phone']").val(phone);
+                $("input[name='ao_dr_fax']").val(fax);
+                $("input[name='ao_dr_NPI']").val(npi);
+            } else if (ordering_physician == 1111) {
                 var html = $(".add-user-dlg-container").html();
-                user_dlg = show_dialog("Add User", html, "xlarge", false);
+                user_dlg = show_dialog("Add Ordering Physician", html, "xlarge", false);
                 setTimeout(function(){
-                    // multi select
                     $(".jconfirm select.a_u_a_facility").selectpicker();
-                    $(".jconfirm select.a_u_a_permitted_state").selectpicker();
 
                     var phones = [{ "mask": "(###) ###-####"}];
                     $('.jconfirm .a_u_a_mobile_no').inputmask({
@@ -1569,6 +1572,13 @@ $(function () {
                         greedy: false,
                         definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
                 }, 200);
+                $("input[name='ao_dr_phone']").val('');
+                $("input[name='ao_dr_fax']").val('');
+                $("input[name='ao_dr_NPI']").val('');
+            } else {
+                $("input[name='ao_dr_phone']").val('');
+                $("input[name='ao_dr_fax']").val('');
+                $("input[name='ao_dr_NPI']").val('');
             }
         });
         $("body").on("click", ".btn-close-user-dlg", function(){
@@ -1578,64 +1588,45 @@ $(function () {
             }
             user_dlg.close();
         });
-        $("body").on("change", ".jconfirm .a_u_a_trackgps", function () {
-            if (this.checked) {
-                console.log('here1');
-                $('#input-deviceid').modal('show');
-            }
-        });
-        $("body").on("change", ".jconfirm .a_u_a_dispatch", function () {
-            if (this.checked) {
-                $('.jconfirm .permitted_state').css("display", "block");
-                console.log('checked!');
+
+        // Toggle between Physician Only and User Account in dialog
+        $("body").on("change", ".jconfirm .dlg_add_type", function(){
+            var mode = $(this).val();
+            var dlg = $(this).closest(".add-user-dlg");
+            if(mode === 'user'){
+                dlg.find("[name='add_type_value']").val('user');
+                dlg.find(".dlg-physician-fields").hide();
+                dlg.find(".dlg-user-fields").show();
+                dlg.find(".a_add_user_btn").text("Add User");
             } else {
-                $('.jconfirm .permitted_state').css("display", "none");
+                dlg.find("[name='add_type_value']").val('physician');
+                dlg.find(".dlg-physician-fields").show();
+                dlg.find(".dlg-user-fields").hide();
+                dlg.find(".a_add_user_btn").text("Add Physician");
             }
         });
+
         $("body").on("click", ".jconfirm .a_add_user_btn", function () {
             var add_user_dlg = $(this).closest(".add-user-dlg");
+            var mode = add_user_dlg.find("[name='add_type_value']").val();
+
+            // Common required fields
             var required_fields = [
-                {
-                    name:"a_u_a_firstname",
-                    msg:"First name is required"
-                },
-                {
-                    name:"a_u_a_lastname",
-                    msg:"Last name is required"
-                },
-                {
-                    name:"a_u_a_username",
-                    msg:"User name is required"
-                },
-                {
-                    name:"a_u_a_email",
-                    msg:"Email is required"
-                },
-                {
-                    name:"a_u_a_npi",
-                    msg:"Physician's NPI number is required"
-                },
-                {
-                    name:"a_u_a_main_mobile_no",
-                    msg:"Main mobile no is required"
-                },
-                {
-                    name:"a_u_a_mobile_no",
-                    msg:"Mobile no is required"
-                },
-                {
-                    name:"a_u_a_fax",
-                    msg:"Fax is required"
-                },
-                {
-                    name:"a_u_a_password",
-                    msg:"Password is required"
-                },
-                {
-                    name:"a_u_a_rpassword",
-                    msg:"Retype password is required"
-                }
+                { name:"a_u_a_firstname", msg:"First name is required" },
+                { name:"a_u_a_lastname", msg:"Last name is required" },
+                { name:"a_u_a_npi", msg:"Physician's NPI number is required" }
             ];
+
+            // Additional required fields for user account mode
+            if(mode === 'user'){
+                required_fields.push(
+                    { name:"a_u_a_username", msg:"User name is required" },
+                    { name:"a_u_a_email_user", msg:"Email is required" },
+                    { name:"a_u_a_password", msg:"Password is required" },
+                    { name:"a_u_a_rpassword", msg:"Retype password is required" }
+                );
+            }
+
             for(var i=0; i<required_fields.length; i++){
                 var field = required_fields[i];
                 if(add_user_dlg.find("[name='"+field['name']+"']").val() == ""){
@@ -1645,52 +1636,64 @@ $(function () {
                 }
             }
 
-            // firstly confirm whether username is duplicate or not
-            var username = add_user_dlg.find("[name='a_u_a_username']").val();
-            console.log(username);
-            var params = {
-                "username" : username
-            };
-            var url = BASE_URL + 'admin/users/confirm_admin_username';
-            jQuery.post(url, params, function(res) {
-                console.log("res", res);
-                res = JSON.parse(res);
-                if(res.status == "1") {
+            if(mode === 'user'){
+                // Check password match
+                if(add_user_dlg.find(".a_u_a_password").val() != add_user_dlg.find(".a_u_a_rpassword").val()){
                     add_user_dlg.find(".a_admin_add_alert").removeClass("g_none_dis");
-                    add_user_dlg.find(".a_admin_add_alert").children("div").html("Same username already exist");
-                    add_user_dlg.find(".a_u_a_username").val("").focus();
+                    add_user_dlg.find(".a_admin_add_alert").children("div").html("Passwords do not match");
+                    add_user_dlg.find(".a_u_a_rpassword").val("").focus();
                     return false;
-                } else {
-                    if (add_user_dlg.find(".a_u_a_password").val() != add_user_dlg.find(".a_u_a_rpassword").val() ) {
+                }
+                // Check username duplicate
+                var username = add_user_dlg.find("[name='a_u_a_username']").val();
+                var params = { "username": username };
+                var url = BASE_URL + 'admin/users/confirm_admin_username';
+                jQuery.post(url, params, function(res) {
+                    res = JSON.parse(res);
+                    if(res.status == "1") {
                         add_user_dlg.find(".a_admin_add_alert").removeClass("g_none_dis");
-                        add_user_dlg.find(".a_admin_add_alert").children("div").html("Password do not match");
-                        add_user_dlg.find(".a_u_a_rpassword").val("").focus();
+                        add_user_dlg.find(".a_admin_add_alert").children("div").html("Same username already exists");
+                        add_user_dlg.find(".a_u_a_username").val("").focus();
                         return false;
+                    } else {
+                        // Copy email_user to email field for backend
+                        var emailVal = add_user_dlg.find("[name='a_u_a_email_user']").val();
+                        add_user_dlg.find("[name='a_u_a_email']").val(emailVal);
+                        // Copy state_user to state field
+                        var stateVal = add_user_dlg.find("[name='a_u_a_state_user']").val();
+                        add_user_dlg.find("[name='a_u_a_state']").val(stateVal);
+                        submitDlgForm(add_user_dlg);
                     }
-                    add_user_dlg.find(".a_u_a_deviceid").val($("#a_u_a_deviceid").val());
-                    var form = add_user_dlg.find("form");
-                    $.ajax({
-                        type: "POST",
-                        url: form.attr("action"),
-                        data: form.serialize(), // serializes the form's elements.
-                        success: function(res)
-                        {
-                            console.log("data:", res); // show response from the php script.
-                            var obj = JSON.parse(res);
-                            if(obj.status== 1) {
-                                console.log("obj:", obj);
-                                var data = obj.data;
-                                var html = '<option value="'+data.id+'" data-phone="'+data.phone+'" data-fax="'+data.fax+'" data-NPI="'+data.NPI+'">'+data.firstname+' '+data.lastname+'</option>';
-                                console.log("html", html);
-                                $("select[name='ao_service_dr']").append(html);
-                                $("select[name='ao_service_dr']").val(data.id).change();
-                                user_dlg.close();
-                            }
-                        }
-                    });
+                });
+            } else {
+                submitDlgForm(add_user_dlg);
+            }
+        });
+
+        function submitDlgForm(add_user_dlg){
+            var form = add_user_dlg.find("form");
+            $.ajax({
+                type: "POST",
+                url: form.attr("action"),
+                data: form.serialize(),
+                success: function(res)
+                {
+                    console.log("data:", res);
+                    var obj = JSON.parse(res);
+                    if(obj.status== 1) {
+                        console.log("obj:", obj);
+                        var data = obj.data;
+                        var html = '<option value="'+data.id+'" data-phone="'+(data.phone||'')+'" data-fax="'+(data.fax||'')+'" data-NPI="'+(data.NPI||'')+'">'+data.lastname+' '+data.firstname+'</option>';
+                        $("select[name='ao_service_dr']").append(html);
+                        $("select[name='ao_service_dr']").val(data.id).change();
+                        user_dlg.close();
+                    } else {
+                        add_user_dlg.find(".a_admin_add_alert").removeClass("g_none_dis");
+                        add_user_dlg.find(".a_admin_add_alert").children("div").html(obj.msg || 'Unable to add physician.');
+                    }
                 }
             });
-        });
+        }
 
         //test
         //$("select[name='ao_service_dr']").val(1111).change();

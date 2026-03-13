@@ -361,8 +361,8 @@ class Users extends MU_Controller
             redirect(base_url('admin/users'));
             return;
         }
-        // Detect physician-only entries (no user account)
-        $is_physician = (strpos($user['username'], 'phys_') === 0);
+        // Detect ordering physician entries
+        $is_physician = ((int)$user['role'] === 7);
 
         $this->form_validation->set_rules('a_u_a_firstname', 'Firstname', 'trim|required');
         $this->form_validation->set_rules('a_u_a_lastname', 'Lastname', 'trim|required');
@@ -439,7 +439,7 @@ class Users extends MU_Controller
                 'mainphone' => $this->input->post('a_u_a_main_mobile_no'),
                 'phone' => $this->input->post('a_u_a_mobile_no'),
                 'role' => $role,
-                'NPI' => $this->input->post('a_u_a_npi'),
+                'NPI' => (preg_match('/^X+$/', $this->input->post('a_u_a_npi')) || $this->input->post('a_u_a_npi') === '') ? $user['NPI'] : $this->input->post('a_u_a_npi'),
                 'facility' => $facilitiesarr_string,
                 'email_pref' => 0,
                 'sms_pref' => 0,
