@@ -420,7 +420,8 @@ class Order extends MU_Controller{
                     '<a title="Submit for Reading" class="submit-reading-btn btn btn-xs btn-warning" data-id="' . $order_id . '" href="javascript:void(0);"><i class="fa fa-file-text"></i></a>' .
                     '<a title="View Report" class="btn btn-xs btn-warning" href="' . $base_url . 'admin/order/view_report/' . $order_id . '" target="_blank"><i class="fa fa-file-text-o"></i></a>' .
                     '<a title="View Timeline" class="view-timeline-btn btn btn-xs btn-info" data-id="' . $order_id . '" href="javascript:void(0);"><i class="fa fa-history"></i></a>' .
-                    '<a title="Workflow" class="btn btn-xs btn-primary" href="http://18.221.194.47:3000/" target="_blank"><i class="fa fa-gears"></i></a>' .
+                    '<a title="Workflow" class="btn btn-xs btn-primary" href="'. $base_url . 'admin/order/view_report/'. $order_id .'" target="_blank"><i class="fa fa-gears"></i></a>' .
+                    '<a title="Workflow" class="btn btn-xs btn-primary" href="'. $base_url . 'admin/order/toPRS" target="_blank"><i class="fa fa-gears"></i></a>' .					
                     '<a title="Dispatch" class="dispatch-btn btn btn-xs btn-primary" data-id="' . $order_id . '" data-order-id="' . $order_id . '"><i class="fa fa-car"></i></a>' .
                     '<a title="Mark Completed" class="mark-btn btn btn-xs btn-primary" data-id="' . $order_id . '"><i class="fa fa-check"></i></a>' .
                     '<a title="Send to HL7" class="btn btn-xs btn-primary" href="javascript:void(0);"><i class="fa fa-send"></i></a>' .
@@ -453,6 +454,23 @@ class Order extends MU_Controller{
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode(array('data' => $rows)));
+    }
+	
+	public function toPRS(){
+        $rand=$this->randStr();
+		$user=$this->session->all_userdata();//print_r($user);exit;
+		$username=$user['username'];
+		$data=array('random_str'=>$rand,'str_datetime'=>date('Y-m-d H:i:s'),'user_name'=>$username);
+		$this->load->model('admin/prs_model', 'prs_model');
+		$this->prs_model->save($data);
+        redirect('http://18.221.194.47/system/authenticate.php?action=login&rand='.$rand);
+		exit;
+    }
+
+    private function randStr(){
+        $rand=rand();
+        $rand=md5($rand);
+        return $rand;
     }
 
     // ... other methods unchanged (manage, add, create, get_search_result, edit, update, view) ...
