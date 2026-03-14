@@ -60,7 +60,7 @@
 
                                 //record logs
                                 $this->log_model->record_system_log( '', 4, 'loginA', '' );
-                                redirect(base_url('admin/dashboard'), 'refresh');
+                                redirect(base_url('/admin/order/add?from=dashboard'), 'refresh');
                             }
                         }
                         else if ($result['is_admin'] == 0){
@@ -88,7 +88,7 @@
                                     'is_user_login' => TRUE
                                 );
                                 $this->session->set_userdata($user_data);
-                                redirect(base_url('admin/dashboard'), 'refresh');
+                                redirect(base_url('admin/order/add?from=dashboard'), 'refresh');
                             }
                         }
                     }
